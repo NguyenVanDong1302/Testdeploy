@@ -2,6 +2,10 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+function normalizeOrigin(origin: string): string {
+  return origin.trim().replace(/\/+$/, "");
+}
+
 function parseCorsOrigins(rawOrigins: string | undefined): string[] {
   if (!rawOrigins) {
     return [];
@@ -9,7 +13,7 @@ function parseCorsOrigins(rawOrigins: string | undefined): string[] {
 
   return rawOrigins
     .split(",")
-    .map((origin) => origin.trim())
+    .map(normalizeOrigin)
     .filter(Boolean);
 }
 

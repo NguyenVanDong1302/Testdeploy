@@ -121,7 +121,9 @@ Frontend tren Vercel **khong the goi `localhost` cua may ban**. Backend tren may
 - ngrok
 - Port forwarding + domain/DDNS + reverse proxy
 
-Lua chon de nhat de test nhanh:
+### Cach 1: test nhanh bang Quick Tunnel
+
+Lua chon nhanh nhat de test:
 
 ```powershell
 cloudflared tunnel --url http://localhost:4000
@@ -132,6 +134,54 @@ Sau do lay URL HTTPS ma tunnel cap va gan vao:
 - `frontend/.env` khi test tu xa
 - `VITE_API_BASE_URL` tren Vercel
 - `CORS_ORIGINS` trong `backend/.env`
+
+Luu y:
+
+- URL `trycloudflare.com` la tam thoi, co the thay doi moi lan chay lai
+- Phu hop de test, khong phu hop cho cau hinh on dinh tren Vercel
+
+### Cach 2: Cloudflare Tunnel on dinh cho Vercel
+
+Neu ban co domain quan ly boi Cloudflare, nen dung tunnel on dinh:
+
+1. Mo Cloudflare Dashboard.
+2. Vao `Networking > Tunnels`.
+3. Tao mot `Cloudflared tunnel`, vi du ten `todo-backend-pc`.
+4. Trong phan public hostname, tao hostname:
+
+```text
+api.your-domain.com -> http://localhost:4000
+```
+
+5. Cloudflare se hien lenh cai tunnel service tren Windows. Chay lenh do trong CMD/PowerShell mo bang quyen Administrator.
+
+Dang lenh thuong co dang:
+
+```powershell
+cloudflared.exe service install <TUNNEL_TOKEN>
+```
+
+6. Sau khi service chay, backend local cua ban se co URL on dinh nhu:
+
+```text
+https://api.your-domain.com
+```
+
+7. Cap nhat Vercel env:
+
+```env
+VITE_API_BASE_URL=https://api.your-domain.com
+```
+
+8. Cap nhat `backend/.env`:
+
+```env
+CORS_ORIGINS=http://localhost:5173,https://your-app.vercel.app
+```
+
+9. Restart backend local neu vua sua `.env`.
+
+Neu ban chua co domain tren Cloudflare, hay dung Quick Tunnel truoc, sau do chuyen sang tunnel on dinh khi san sang.
 
 ## 8. Build production
 
