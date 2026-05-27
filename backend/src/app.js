@@ -8,6 +8,18 @@ const routes = require("./routes");
 const { errorHandler } = require("./middlewares/errorHandler");
 const { mediaRoot } = require("./config/media");
 
+const legacyApiPrefixes = [
+  "/auth",
+  "/posts",
+  "/users",
+  "/notifications",
+  "/messages",
+  "/stories",
+  "/admin",
+  "/health",
+  "/whoami",
+];
+
 function normalizeOrigins(value = "") {
   return String(value || "")
     .split(",")
@@ -77,6 +89,22 @@ function createApp(options = {}) {
   app.use(express.json({ limit: "2mb" }));
   app.use(express.urlencoded({ extended: true }));
   app.use(morgan("dev"));
+
+  // Backward compatibility for clients that call `/auth/...` instead of `/api/auth/...`.
+  app.use((req, _res, next) => {
+    const originalUrl = String(req.url || "");
+    const pathname = originalUrl.split("?")[0] || "/";
+    const shouldAlias =
+      !pathname.startsWith("/api/")
+      && pathname !== "/api"
+      && legacyApiPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+
+    if (shouldAlias) {
+      req.url = `/api${originalUrl.startsWith("/") ? originalUrl : `/${originalUrl}`}`;
+    }
+
+    next();
+  });
 
   app.use("/uploads", express.static(mediaRoot));
   app.use("/uploads/posts", express.static(path.join(mediaRoot, "posts")));
