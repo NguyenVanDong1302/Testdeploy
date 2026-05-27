@@ -1,0 +1,25 @@
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .ig-msg__wrap.is-detail-open .ig-msg__mainShell {
+    grid-template-columns: minmax(0, 1fr) 280px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1100px) {
+  .ig-msg__wrap {
+    grid-template-columns: 340px 1fr;
+  }
+
+  .ig-msg__wrap.is-detail-open .ig-msg__mainShell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ig-msg__detail {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: min(360px, 92vw);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+    z-index: 5;
+  }
+}

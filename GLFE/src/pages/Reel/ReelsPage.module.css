@@ -1,0 +1,204 @@
+.page {
+  height: 100vh;
+  overflow: hidden; /* no scrollbar */
+  position: relative;
+  background: #fff;
+}
+
+.stage {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 10px 18px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: auto 86px;
+  align-items: end;
+  gap: 18px;
+}
+
+/* viewport must be 90vh like your requirement */
+.viewport {
+  width: 390px;
+  height: 90vh;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #111;
+  position: relative;
+}
+
+.slider {
+  height: 100%;
+  transition: transform 320ms ease;
+  will-change: transform;
+}
+
+.slide {
+  height: 90vh; /* each reel takes 90vh */
+  width: 100%;
+  position: relative;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.overlayBottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px 14px 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0));
+  color: #fff;
+}
+
+.userRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.username {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.followBtn {
+  margin-left: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.15);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.caption {
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: 0.95;
+}
+
+.muteBtn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Actions column */
+.actionsCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 10px;
+}
+
+.actionBtn {
+  width: 64px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  color: #0f0f0f;
+}
+
+.count {
+  font-size: 12px;
+  color: #0f0f0f;
+  opacity: 0.9;
+}
+
+.miniThumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #fff;
+}
+
+.miniThumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Right floating scroll buttons */
+.scrollBtns {
+  position: fixed;
+  right: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 50;
+}
+
+.scrollBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.scrollBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* responsive */
+@media (max-width: 920px) {
+  .viewport {
+    width: 340px;
+  }
+  .scrollBtns {
+    right: 18px;
+  }
+}
+
+@media (max-width: 720px) {
+  .card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .actionsCol {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .scrollBtns {
+    display: none;
+  }
+}

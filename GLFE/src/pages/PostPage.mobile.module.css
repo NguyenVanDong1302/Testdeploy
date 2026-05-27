@@ -1,0 +1,28 @@
+@media (max-width: 768px) {
+  .page {
+    padding: 14px 10px 26px;
+    gap: 14px;
+  }
+
+  .suggestedSection {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .suggestedHeader {
+    align-items: flex-start;
+  }
+
+  .suggestedGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .suggestedCard {
+    grid-template-columns: 1fr;
+  }
+
+  .mediaWrap {
+    min-height: 200px;
+    aspect-ratio: 16 / 10;
+  }
+}

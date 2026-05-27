@@ -1,0 +1,16 @@
+@media (min-width: 981px) and (max-width: 1180px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 981px) and (max-width: 1120px) {
+  .detailShell {
+    width: min(96vw, 1100px);
+    grid-template-columns: minmax(0, 1.15fr) clamp(300px, 34vw, 380px);
+  }
+
+  .detailSide {
+    width: clamp(300px, 34vw, 380px);
+  }
+}

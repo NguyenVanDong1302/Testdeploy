@@ -1,0 +1,101 @@
+@media (max-width: 768px) {
+  .wrapper {
+    display: block;
+    padding: 0;
+  }
+
+  .center {
+    width: 100%;
+    max-width: none;
+  }
+
+  .mobileHeader {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px 12px;
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 1px solid #efefef;
+    backdrop-filter: blur(18px);
+  }
+
+  .mobileBrand {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    color: #111;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .mobileBrandText {
+    font-family: 'Segoe Script', 'Brush Script MT', cursive;
+    font-size: 31px;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .mobileChevron {
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+  }
+
+  .mobileHeaderActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobileIconBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: #111;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+
+  .mobileIconBtn svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    overflow: visible;
+  }
+
+  .mobileNotificationBtn svg {
+    width: 23px;
+    height: 23px;
+    transform: translateY(0.5px);
+  }
+
+  .mobileHeaderBadge {
+    position: absolute;
+    top: 8px;
+    right: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #ff3040;
+    box-shadow: 0 0 0 2px #fff;
+  }
+}
+
+@media (max-width: 560px) {
+  .mobileHeader {
+    padding-inline: 14px;
+  }
+
+  .mobileBrandText {
+    font-size: 29px;
+  }
+}

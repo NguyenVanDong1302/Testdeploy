@@ -1,0 +1,9 @@
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .ig-reels__shell {
+    padding-right: 16px;
+  }
+
+  .ig-reels__viewport {
+    width: min(516px, calc(100vw - 120px));
+  }
+}

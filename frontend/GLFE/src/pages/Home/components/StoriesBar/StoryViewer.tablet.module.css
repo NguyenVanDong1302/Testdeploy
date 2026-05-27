@@ -1,0 +1,10 @@
+@media (min-width: 641px) and (max-width: 1180px) {
+  .sideRail {
+    display: none;
+  }
+
+  .storyCard {
+    width: min(524px, calc(100vw - 136px));
+    min-width: min(524px, calc(100vw - 136px));
+  }
+}

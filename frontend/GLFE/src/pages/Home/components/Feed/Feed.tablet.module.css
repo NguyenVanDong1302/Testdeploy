@@ -1,0 +1,30 @@
+@media (min-width: 769px) and (max-width: 1024px) {
+  .feed {
+    width: 100%;
+    max-width: 520px;
+    margin-inline: auto;
+    gap: 18px;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .refresh {
+    width: 100%;
+  }
+
+  .suggestedSection,
+  .suggestedList {
+    min-width: 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 860px) {
+  .feed {
+    max-width: 500px;
+  }
+}

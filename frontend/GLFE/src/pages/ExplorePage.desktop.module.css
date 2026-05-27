@@ -1,0 +1,9 @@
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .page {
+    width: min(980px, calc(100% - 22px));
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-top: 18px;
+    gap: 12px;
+  }
+}

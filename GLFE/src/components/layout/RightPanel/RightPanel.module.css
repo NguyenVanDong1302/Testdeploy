@@ -1,0 +1,41 @@
+.wrap {
+    position: sticky;
+    top: 28px;
+}
+.me {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.meLeft {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.meAvatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: #d1d5db;
+}
+.meUser {
+    font-weight: 600;
+    font-size: 14px;
+}
+.meName {
+    color: #737373;
+    font-size: 14px;
+}
+.switch {
+    color: #0095f6;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+}
+.footer {
+    margin-top: 18px;
+    color: #c7c7c7;
+    font-size: 12px;
+    line-height: 1.45;
+}

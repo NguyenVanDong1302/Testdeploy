@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+  .wrap {
+    gap: 12px;
+    padding: 10px 12px 14px;
+  }
+
+  .story,
+  .name,
+  .helper {
+    width: 68px;
+  }
+
+  .followQuickAction {
+    top: 40px;
+    right: 1px;
+  }
+}
+
+@media (max-width: 560px) {
+  .wrap {
+    display: none;
+  }
+}

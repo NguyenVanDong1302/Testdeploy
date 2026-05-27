@@ -1,0 +1,118 @@
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+  .sidebar,
+  .sidebar:hover {
+    width: var(--sb-collapsed);
+  }
+
+  .item {
+    justify-content: center;
+    gap: 0;
+    padding-inline: 10px;
+  }
+
+  .logoRow {
+    justify-content: center;
+    padding-inline: 0;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .bottom {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar,
+  .sidebar:hover {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(64px + env(safe-area-inset-bottom));
+    padding: 0 max(8px, env(safe-area-inset-right)) env(safe-area-inset-bottom) max(8px, env(safe-area-inset-left));
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -10px 24px rgba(15, 23, 42, 0.08);
+    overflow: visible;
+    transition: none;
+  }
+
+  .logoRow,
+  .bottom {
+    display: none;
+  }
+
+  .nav {
+    height: 64px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0;
+  }
+
+  .nav > *:nth-child(5):not(:last-child),
+  .nav > *:nth-child(6):not(:last-child),
+  .nav > *:nth-child(7):not(:last-child),
+  .nav > *:nth-child(8):not(:last-child) {
+    display: none;
+  }
+
+  .nav > *:nth-child(1) {
+    order: 1;
+  }
+
+  .nav > *:nth-child(4) {
+    order: 2;
+  }
+
+  .nav > *:nth-child(2) {
+    order: 3;
+  }
+
+  .nav > *:nth-child(3) {
+    order: 4;
+  }
+
+  .nav > *:last-child {
+    order: 5;
+  }
+
+  .item {
+    min-width: 0;
+    flex: 1 1 0;
+    height: 64px;
+    padding: 0 6px;
+    justify-content: center;
+    border-radius: 0;
+  }
+
+  .itemActive {
+    background: transparent;
+  }
+
+  .icon {
+    width: 28px;
+    flex-basis: 28px;
+    font-size: 22px;
+  }
+
+  .iconWrap {
+    width: 28px;
+    justify-content: center;
+  }
+
+  .itemActive .iconWrap::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: #111827;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,15 @@
+@media (min-width: 1181px) and (max-width: 1400px) {
+  .storyCard {
+    width: min(524px, calc(100vw - 280px));
+    min-width: min(524px, calc(100vw - 280px));
+  }
+
+  .sideCard {
+    width: 168px;
+    height: 300px;
+  }
+
+  .sideUser {
+    font-size: 18px;
+  }
+}

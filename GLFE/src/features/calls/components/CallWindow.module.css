@@ -1,0 +1,286 @@
+.window {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: min(360px, calc(100vw - 24px));
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 42%),
+    linear-gradient(180deg, #1f2a44 0%, #111824 100%);
+  box-shadow: 0 28px 80px rgba(10, 18, 33, 0.34);
+  color: #fff;
+  overflow: hidden;
+  z-index: 1100;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.windowMinimized {
+  width: min(320px, calc(100vw - 24px));
+  border-radius: 22px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 18px 0;
+}
+
+.meta {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.title {
+  margin-top: 12px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+}
+
+.windowAction,
+.control,
+.incomingAction {
+  border: 0;
+  cursor: pointer;
+  transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+}
+
+.windowAction {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.windowAction:hover,
+.control:hover,
+.incomingAction:hover {
+  transform: translateY(-1px);
+}
+
+.body {
+  padding: 18px;
+}
+
+.stage {
+  position: relative;
+  min-height: 408px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top, rgba(86, 165, 255, 0.22), transparent 48%),
+    rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remoteVideo {
+  display: block;
+  width: 100%;
+  height: 408px;
+  object-fit: cover;
+  background: #0e1626;
+}
+
+.emptyStage {
+  width: 100%;
+  min-height: 408px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px;
+  text-align: center;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 40px rgba(7, 14, 26, 0.38);
+}
+
+.miniAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 52px;
+}
+
+.callState {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.callName {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.callHint {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.localPreview {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 108px;
+  height: 152px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.34);
+  box-shadow: 0 20px 44px rgba(10, 18, 33, 0.28);
+  background: rgba(12, 18, 28, 0.88);
+}
+
+.localVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.localBadge {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.42);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.control {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.controlActive {
+  background: rgba(92, 212, 138, 0.22);
+}
+
+.controlDanger {
+  background: #ff5b6b;
+}
+
+.incomingActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.incomingAction {
+  min-width: 132px;
+  min-height: 48px;
+  border-radius: 999px;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.accept {
+  background: #58d68d;
+  color: #102033;
+}
+
+.decline {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.miniBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.miniMeta {
+  min-width: 0;
+  flex: 1;
+}
+
+.miniTitle {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.miniSubtitle {
+  margin-top: 4px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.miniControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .window,
+  .windowMinimized {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100vw - 24px);
+  }
+
+  .stage,
+  .emptyStage,
+  .remoteVideo {
+    min-height: 320px;
+    height: 320px;
+  }
+}

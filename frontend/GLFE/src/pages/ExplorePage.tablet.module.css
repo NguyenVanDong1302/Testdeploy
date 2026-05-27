@@ -1,0 +1,33 @@
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page {
+    width: calc(100% - 16px);
+    max-width: 100%;
+    padding-top: 10px;
+    padding-bottom: 28px;
+    gap: 10px;
+  }
+
+  .header {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .tile {
+    border-radius: 0;
+  }
+
+  .tile::after {
+    opacity: 0;
+  }
+
+  .overlayBottom {
+    display: none;
+  }
+}

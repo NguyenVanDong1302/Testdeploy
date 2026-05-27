@@ -1,0 +1,233 @@
+@media (max-width: 768px) {
+  .overlay {
+    position: static;
+    inset: auto;
+    background: transparent;
+    display: block;
+  }
+
+  .popup {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    border-right: 0;
+    box-shadow: none;
+    padding: 10px 0 0;
+    overflow: visible;
+  }
+
+  .header {
+    display: none;
+  }
+
+  .searchBox {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px 14px;
+    background: #fff;
+  }
+
+  .mobileSearchField {
+    position: relative;
+    flex: 1 1 auto;
+  }
+
+  .searchIcon {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    width: 20px;
+    height: 20px;
+    color: #8e8e93;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .searchIcon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .input {
+    height: 44px;
+    border-radius: 14px;
+    padding-left: 42px;
+    padding-right: 38px;
+    font-size: 16px;
+  }
+
+  .clearBtn {
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #bfc4cc;
+  }
+
+  .cancelBtn {
+    border: 0;
+    background: transparent;
+    color: #111827;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0;
+    flex: 0 0 auto;
+  }
+
+  .mobileList {
+    height: auto;
+    min-height: calc(100vh - 132px);
+    padding: 0 0 12px;
+  }
+
+  .resultsPanel,
+  .mobileSurface {
+    animation: searchReveal 220ms ease both;
+  }
+
+  .listHeading {
+    padding: 10px 16px 8px;
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mobileList > button {
+    padding: 10px 16px;
+    border-radius: 0;
+  }
+
+  .mobileList > button:hover {
+    background: #fafafa;
+  }
+
+  .mobileList > button img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .explorePanel {
+    padding-top: 2px;
+  }
+
+  .stateBox {
+    padding: 24px 16px;
+    display: grid;
+    gap: 10px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+  }
+
+  .retryBtn {
+    width: fit-content;
+    justify-self: center;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    background: #fff;
+    color: #111827;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+
+  .exploreGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-flow: dense;
+    grid-auto-rows: clamp(118px, 30vw, 148px);
+    gap: 1px;
+    background: #fff;
+  }
+
+  .exploreTile {
+    position: relative;
+    border: 0;
+    padding: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #111827;
+    cursor: pointer;
+  }
+
+  .exploreTileTall {
+    grid-row: span 2;
+  }
+
+  .exploreMedia {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .tileBadgeRow {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    display: flex;
+    gap: 6px;
+  }
+
+  .tileBadge {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: rgba(17, 24, 39, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    display: grid;
+    place-items: center;
+  }
+
+  .tileBadge svg {
+    width: 14px;
+    height: 14px;
+    fill: #fff;
+    stroke: #fff;
+    stroke-width: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchBox {
+    gap: 10px;
+    padding-inline: 12px;
+  }
+
+  .mobileList {
+    min-height: calc(100vh - 124px);
+  }
+
+  .listHeading,
+  .stateBox {
+    padding-inline: 12px;
+  }
+
+  .mobileList > button {
+    padding-inline: 12px;
+  }
+
+  .exploreGrid {
+    grid-auto-rows: clamp(108px, 31vw, 132px);
+  }
+}
+
+@keyframes searchReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

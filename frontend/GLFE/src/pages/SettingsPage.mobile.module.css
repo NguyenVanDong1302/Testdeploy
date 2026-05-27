@@ -1,0 +1,37 @@
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 12px 44px;
+  }
+
+  .profileCard,
+  .switchCard {
+    align-items: flex-start;
+  }
+
+  .profileCard {
+    flex-direction: column;
+    padding: 18px 16px;
+  }
+
+  .profileLeft {
+    width: 100%;
+  }
+
+  .username {
+    font-size: 24px;
+  }
+
+  .fullName {
+    font-size: 18px;
+  }
+
+  .inlineField {
+    grid-template-columns: 1fr;
+  }
+
+  .changePhotoBtn,
+  .secondaryBtn,
+  .submitBtn {
+    width: 100%;
+  }
+}

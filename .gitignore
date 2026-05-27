@@ -1,4 +1,12 @@
 node_modules/
 dist/
+.vercel/
+.env
+.env.local
+.env.production.local
 frontend/dist/
 backend/dist/
+backend/public/uploads/
+frontend/src/src/
+backend/src/src/
+frontend/src/src.rar

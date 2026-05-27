@@ -1,0 +1,144 @@
+@media (max-width: 640px) {
+  .shell {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .previewCol {
+    min-height: clamp(240px, 36vh, 320px);
+    max-height: 38vh;
+  }
+
+  .shellPanelOnly {
+    width: 100%;
+    height: 100%;
+  }
+
+  .header {
+    padding: 14px 14px 12px;
+  }
+
+  .postAvatarImage,
+  .itemAvatarImage {
+    width: 32px;
+    height: 32px;
+  }
+
+  .captionCard {
+    margin: 10px 12px 0;
+    padding: 12px 14px;
+  }
+
+  .list {
+    padding: 12px;
+    gap: 16px;
+  }
+
+  .item {
+    gap: 10px;
+  }
+
+  .commentMedia {
+    width: 100%;
+  }
+
+  .repliesWrap {
+    margin-left: 18px;
+  }
+
+  .repliesStack {
+    padding-left: 14px;
+  }
+
+  .replyBadgeRow {
+    flex-wrap: wrap;
+  }
+
+  .composer {
+    padding: 12px;
+  }
+
+  .replyHint {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .composerRow {
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .composerIcon {
+    display: none;
+  }
+
+  .textarea {
+    min-height: 44px;
+    padding: 11px 12px;
+  }
+
+  .attachBtn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .submitBtn {
+    min-width: 84px;
+    padding: 0 14px;
+  }
+
+  .mediaNav {
+    width: 34px;
+    height: 34px;
+    font-size: 24px;
+  }
+
+  .mediaPrev {
+    left: 12px;
+  }
+
+  .mediaNext {
+    right: 12px;
+  }
+
+  .shellFullscreen {
+    height: 100dvh;
+  }
+
+  .fullscreenCloseBtn {
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .previewCol {
+    min-height: 28vh;
+    max-height: 32vh;
+  }
+
+  .list {
+    padding: 10px 10px 12px;
+  }
+
+  .composer {
+    padding: 10px;
+  }
+
+  .repliesWrap {
+    margin-left: 12px;
+  }
+
+  .repliesStack {
+    padding-left: 10px;
+  }
+
+  .submitBtn {
+    min-width: 74px;
+  }
+}

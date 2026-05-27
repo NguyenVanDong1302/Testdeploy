@@ -1,0 +1,14 @@
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page {
+    padding: 20px 20px 34px;
+    gap: 18px;
+  }
+
+  .suggestedGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mediaWrap {
+    min-height: 190px;
+  }
+}

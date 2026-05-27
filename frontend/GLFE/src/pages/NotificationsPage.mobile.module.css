@@ -1,0 +1,57 @@
+@media (max-width: 768px) {
+  .panel {
+    width: 100%;
+    padding: 18px 14px 24px;
+  }
+
+  .row {
+    grid-template-columns: 52px 1fr;
+  }
+
+  .actions {
+    grid-column: 2;
+    justify-content: flex-start;
+    margin-top: 6px;
+  }
+
+  .pagePanel {
+    width: 100%;
+  }
+
+  .pageTop {
+    padding: 14px 14px 12px;
+  }
+
+  .filterRow {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .filterRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filterRow button {
+    white-space: nowrap;
+  }
+
+  .summaryRow {
+    font-size: 13px;
+  }
+
+  .content {
+    padding: 12px 12px 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTop {
+    padding-inline: 12px;
+  }
+
+  .content {
+    padding-inline: 10px;
+  }
+}

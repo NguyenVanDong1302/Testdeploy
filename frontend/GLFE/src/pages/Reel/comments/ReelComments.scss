@@ -1,0 +1,37 @@
+.ig-reel-comments__backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,.35); opacity: 0; pointer-events:none; transition: opacity .28s ease; z-index: 40;
+}
+.ig-reel-comments__backdrop.is-open { opacity:1; pointer-events:auto; }
+.ig-reel-comments__panel {
+  position: fixed; top:0; right:0; height:100dvh; width:min(420px, 92vw); background:#fff; transform:translateX(100%); transition:transform .3s ease; z-index:41; display:flex; flex-direction:column; box-shadow:-12px 0 32px rgba(0,0,0,.12);
+}
+.ig-reel-comments__panel.is-open { transform:translateX(0); }
+.ig-reel-comments__grabber { display:none; }
+.ig-reel-comments__header { height:56px; border-bottom:1px solid rgba(0,0,0,.08); display:grid; grid-template-columns:56px 1fr 56px; align-items:center; }
+.ig-reel-comments__close { background:none; border:none; font-size:22px; cursor:pointer; }
+.ig-reel-comments__title { text-align:center; font-weight:700; }
+.ig-reel-comments__body { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:14px; }
+.ig-reel-comments__item { display:grid; grid-template-columns:40px 1fr 24px; gap:12px; align-items:start; }
+.ig-reel-comments__item.is-reply { margin-left:24px; }
+.ig-reel-comments__avatar, .ig-reel-comments__composerAvatar { width:40px; height:40px; border-radius:50%; object-fit:cover; background:#dde5f0; }
+.ig-reel-comments__main { min-width:0; }
+.ig-reel-comments__meta { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.ig-reel-comments__user { font-weight:700; }
+.ig-reel-comments__time { color:#8d96a7; font-size:12px; }
+.ig-reel-comments__text { margin-top:4px; line-height:1.45; white-space:pre-wrap; }
+.ig-reel-comments__foot { display:flex; gap:14px; margin-top:8px; font-size:12px; color:#7a8392; }
+.ig-reel-comments__foot button, .ig-reel-comments__replying button { border:none; background:none; color:inherit; cursor:pointer; font-weight:600; }
+.ig-reel-comments__like { background:none; border:none; cursor:pointer; color:#98a1b2; font-size:16px; padding-top:2px; }
+.ig-reel-comments__like.is-liked { color:#ed4956; }
+.ig-reel-comments__composer { border-top:1px solid rgba(0,0,0,.08); padding:12px 16px; display:grid; grid-template-columns:40px 1fr; gap:12px; align-items:start; }
+.ig-reel-comments__composerBox { min-width:0; }
+.ig-reel-comments__replying { display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#697386; margin-bottom:8px; }
+.ig-reel-comments__composerRow { display:flex; gap:10px; align-items:center; }
+.ig-reel-comments__composerInput { flex:1; border:none; background:#f3f5f7; border-radius:999px; padding:12px 14px; min-width:0; }
+.ig-reel-comments__composerInput:focus { outline:none; }
+.ig-reel-comments__submit { border:none; background:none; color:#0095f6; font-weight:700; cursor:pointer; }
+.ig-reel-comments__submit:disabled { opacity:.45; cursor:default; }
+.ig-reel-comments__media { width:min(240px,100%); max-height:280px; border-radius:16px; object-fit:cover; margin-top:10px; background:#f3f5f7; }
+.ig-reel-comments__pending { margin-bottom:8px; display:flex; flex-direction:column; gap:8px; }
+.ig-reel-comments__pendingMedia { width:min(180px,100%); max-height:180px; border-radius:12px; object-fit:cover; background:#f3f5f7; }
+.ig-reel-comments__attach { border:none; background:none; color:#0095f6; font-size:18px; cursor:pointer; }

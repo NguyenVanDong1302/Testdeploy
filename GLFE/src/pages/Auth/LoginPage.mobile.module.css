@@ -1,0 +1,42 @@
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .visual {
+    border-right: none;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 28px 20px 20px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .stack {
+    transform: scale(0.82);
+    transform-origin: center top;
+    height: 350px;
+  }
+
+  .panel {
+    padding: 28px 20px;
+  }
+
+  .formHeader {
+    font-size: 24px;
+  }
+
+  .input,
+  .primaryBtn,
+  .facebookBtn,
+  .outlineBtn,
+  .googleBtn {
+    height: 54px;
+    font-size: 18px;
+  }
+
+  .textLink {
+    font-size: 16px;
+  }
+}

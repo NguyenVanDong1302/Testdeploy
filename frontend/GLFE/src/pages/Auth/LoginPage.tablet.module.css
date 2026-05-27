@@ -1,0 +1,29 @@
+@media (min-width: 769px) and (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .visual {
+    border-right: none;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 36px 36px 24px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .stack {
+    transform: scale(0.9);
+    transform-origin: center top;
+    height: 380px;
+  }
+
+  .panel {
+    padding: 32px 36px;
+  }
+
+  .formHeader {
+    font-size: 28px;
+  }
+}

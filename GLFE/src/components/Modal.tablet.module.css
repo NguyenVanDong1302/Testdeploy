@@ -1,0 +1,18 @@
+@media (min-width: 641px) and (max-width: 900px) {
+  .overlay {
+    padding: 12px;
+  }
+
+  .modal,
+  .body {
+    width: min(calc(100vw - 24px), 860px);
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+  }
+
+  .closeBtn {
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+  }
+}

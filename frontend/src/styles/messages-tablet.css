@@ -1,0 +1,121 @@
+@media (min-width: 769px) and (max-width: 1024px) {
+  .app-layout__main.app-layout__main--messages-compact {
+    min-height: 100dvh;
+    padding: 0;
+  }
+
+  .ig-msg.is-compact .ig-msg__wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .ig-msg.is-compact .ig-msg__left,
+  .ig-msg.is-compact .ig-msg__right {
+    min-width: 0;
+  }
+
+  .ig-msg.is-compact .ig-msg__left {
+    border-right: 0;
+  }
+
+  .ig-msg.is-compact .ig-msg__leftTop,
+  .ig-msg.is-compact .ig-msg__rightTop {
+    display: grid;
+    align-items: center;
+    gap: 8px;
+    min-height: 56px;
+    height: auto;
+    padding: 8px 12px;
+  }
+
+  .ig-msg.is-compact .ig-msg__leftTop {
+    grid-template-columns: 40px minmax(0, 1fr) 40px;
+  }
+
+  .ig-msg.is-compact .ig-msg__rightTop {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    padding-right: 10px;
+  }
+
+  .ig-msg.is-compact .ig-msg__headerBack {
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .ig-msg.is-compact .ig-msg__userBtn {
+    min-width: 0;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .ig-msg.is-compact .ig-msg__userName,
+  .ig-msg.is-compact .ig-msg__peerName,
+  .ig-msg.is-compact .ig-msg__peerUser {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ig-msg.is-compact .ig-msg__peer,
+  .ig-msg.is-compact .ig-msg__peerMeta {
+    min-width: 0;
+  }
+
+  .ig-msg.is-compact .ig-msg__compose,
+  .ig-msg.is-compact .ig-msg__headerBack {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ig-msg.is-compact .ig-msg__searchWrap {
+    padding: 0 14px 14px;
+  }
+
+  .ig-msg.is-compact .ig-msg__searchDropdown {
+    left: 14px;
+    right: 14px;
+  }
+
+  .ig-msg.is-compact .ig-msg__sectionHead {
+    padding: 0 16px 10px;
+  }
+
+  .ig-msg.is-compact.is-list-view .ig-msg__item.is-selected {
+    background: transparent;
+  }
+
+  .ig-msg.is-compact .ig-msg__list {
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  .ig-msg.is-compact .ig-msg__actions {
+    justify-content: flex-end;
+  }
+
+  .ig-msg.is-compact .ig-msg__body {
+    padding: 0 16px;
+  }
+
+  .ig-msg.is-compact .ig-msg__bubbleWrap {
+    max-width: min(72%, 460px);
+  }
+
+  .ig-msg.is-compact .ig-msg__composerWrap {
+    padding: 0 12px 12px;
+  }
+
+  .ig-msg.is-compact .ig-msg__detail {
+    position: fixed;
+    inset: 0;
+    height: 100dvh;
+    width: 100%;
+    border-left: 0;
+    box-shadow: none;
+    z-index: 7;
+  }
+
+  .ig-msg.is-compact .ig-msg__detailInlineActions {
+    flex-wrap: wrap;
+  }
+}

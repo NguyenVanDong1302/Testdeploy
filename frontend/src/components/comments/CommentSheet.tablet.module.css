@@ -1,0 +1,17 @@
+@media (min-width: 641px) and (max-width: 860px) {
+  .shell {
+    width: min(calc(100vw - 24px), 720px);
+    height: min(calc(100vh - 24px), 900px);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .previewCol {
+    min-height: clamp(240px, 36vh, 320px);
+    max-height: 38vh;
+  }
+
+  .shellPanelOnly {
+    width: 100%;
+    height: 100%;
+  }
+}

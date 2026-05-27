@@ -1,0 +1,90 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 9999;
+  overflow: hidden;
+  animation: modalOverlayFade 220ms ease;
+}
+
+.modal {
+  position: relative;
+  width: min(1280px, 96vw);
+  max-width: min(1280px, 96vw);
+  max-height: 92vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+  animation: modalPanelEnter 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.closeBtn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(20, 20, 20, 0.92);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.closeBtn:hover {
+  background: #000;
+}
+
+.body {
+  display: flex;
+  width: 100%;
+  max-height: 92vh;
+  overflow: hidden;
+}
+
+.fullscreenOverlay {
+  position: fixed;
+  inset: 0;
+  background: #111;
+  z-index: 9999;
+  animation: modalOverlayFade 220ms ease;
+}
+
+@keyframes modalOverlayFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalPanelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .modal,
+  .fullscreenOverlay {
+    animation: none;
+  }
+}

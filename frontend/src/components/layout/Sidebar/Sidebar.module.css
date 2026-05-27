@@ -1,0 +1,180 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: var(--sb-collapsed);
+  /* border-right: 1px solid rgba(0, 0, 0, 0.08); */
+  background: #fff;
+
+  padding: 18px 10px;
+  overflow: hidden;
+  z-index: 40;
+
+  transition: width 180ms ease;
+}
+
+.sidebar:hover {
+  width: var(--sb-expanded);
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10); */
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 18px;
+}
+
+.logoIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+
+.logoText {
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.sidebar:hover .logoText {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 4px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  user-select: none;
+}
+
+.item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.active {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.active .label {
+  font-weight: 800;
+}
+
+.icon {
+  width: 26px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex: 0 0 26px;
+}
+
+.label {
+  font-size: 15px;
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.sidebar:hover .label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.bottom {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.itemBtn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.itemBtn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Dark mode (nếu bạn đang dùng theme tối) */
+@media (prefers-color-scheme: dark) {
+  .sidebar {
+    background: #0f1115;
+    border-right-color: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+  .item:hover,
+  .itemBtn:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.iconWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #ff3040;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 48, 64, 0.28);
+}

@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+  .shell {
+    --sb-collapsed: 64px;
+  }
+
+  .main {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: calc(78px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 560px) {
+  .main {
+    padding-bottom: calc(74px + env(safe-area-inset-bottom));
+  }
+}

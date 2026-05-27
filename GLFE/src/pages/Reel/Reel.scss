@@ -1,0 +1,250 @@
+.ig-reels {
+  min-height: 100vh;
+  background: #fff;
+  color: #0f1419;
+}
+
+.ig-reels__empty {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.ig-reels__shell {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 24px 20px 24px;
+  box-sizing: border-box;
+}
+
+.ig-reels__shell.is-comments-open {
+  align-items: stretch;
+}
+
+.ig-reels__center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ig-reels__card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+.ig-reels__viewport {
+  position: relative;
+  width: min(516px, calc(100vw - 176px));
+  height: min(92vh, 920px);
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.ig-reels__slider {
+  width: 100%;
+  height: 100%;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ig-reels__slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.ig-reels__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  background: #000;
+}
+
+.ig-reels__progress {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+  z-index: 5;
+}
+
+.ig-reels__progressFill {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transform-origin: left center;
+}
+
+.ig-reels__mute {
+  position: absolute;
+  right: 14px;
+  bottom: 96px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(38, 38, 38, 0.72);
+  color: #fff;
+  cursor: pointer;
+  z-index: 6;
+}
+
+.ig-reels__playOverlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 64px;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.ig-reels__overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px 14px 18px;
+  color: #fff;
+  z-index: 5;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0));
+}
+
+.ig-reels__metaRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ig-reels__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  background: #ddd;
+}
+
+.ig-reels__userBlock {
+  min-width: 0;
+  flex: 1;
+}
+
+.ig-reels__username {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.ig-reels__handle {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.ig-reels__follow {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.ig-reels__caption {
+  font-size: 15px;
+  line-height: 1.35;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+.ig-reels__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 12px;
+}
+
+.ig-reels__railBtn {
+  border: 0;
+  background: transparent;
+  color: #111827;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ig-reels__railBtn.is-liked,
+.ig-reels__railBtn.is-active {
+  color: #ef4444;
+}
+
+.ig-reels__icon {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.ig-reels__count {
+  font-size: 13px;
+  font-weight: 500;
+  color: inherit;
+}
+
+.ig-reels__thumbDock {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #000;
+}
+
+.ig-reels__thumbDock video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ig-reels__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ig-reels__navBtn {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #111827;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.14);
+  cursor: pointer;
+}
+
+.ig-reels__navBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

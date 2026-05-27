@@ -1,0 +1,10 @@
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page {
+    padding: 24px 16px 52px;
+  }
+
+  .container,
+  .panel {
+    width: min(100%, 720px);
+  }
+}

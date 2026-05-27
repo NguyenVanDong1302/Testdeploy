@@ -1,0 +1,9 @@
+.mobileHeader {
+  display: none;
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .wrapper {
+    gap: 36px;
+  }
+}

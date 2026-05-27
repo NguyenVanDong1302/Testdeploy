@@ -1,0 +1,6 @@
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .panel {
+    width: min(360px, 32vw);
+    max-width: min(360px, 32vw);
+  }
+}

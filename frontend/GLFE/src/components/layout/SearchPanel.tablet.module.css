@@ -1,0 +1,18 @@
+@media (min-width: 521px) and (max-width: 1024px) {
+  .panel {
+    width: min(360px, 42vw);
+    max-width: min(360px, 42vw);
+  }
+
+  .header {
+    padding: 20px 20px 16px;
+  }
+
+  .searchBox {
+    padding: 0 20px 16px;
+  }
+
+  .results {
+    padding: 10px 6px 16px;
+  }
+}

@@ -1,0 +1,10 @@
+@media (min-width: 769px) and (max-width: 1024px), (hover: none) and (pointer: coarse) and (min-width: 769px) {
+  .shell {
+    --sb-expanded: var(--sb-collapsed);
+  }
+
+  .main {
+    padding-left: calc(var(--sb-collapsed) + 18px);
+    padding-right: 18px;
+  }
+}

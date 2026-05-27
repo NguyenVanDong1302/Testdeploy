@@ -1,0 +1,5 @@
+.main {
+  min-height: 100vh;
+  padding: 0 24px 24px calc(var(--sb-collapsed) + 28px);
+  box-sizing: border-box;
+}

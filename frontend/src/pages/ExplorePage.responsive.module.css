@@ -1,0 +1,95 @@
+@media (max-width: 1200px) {
+  .page {
+    width: min(980px, calc(100% - 22px));
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-top: 18px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .page {
+    width: calc(100% - 16px);
+    max-width: 100%;
+    padding-top: 10px;
+    padding-bottom: 28px;
+    gap: 10px;
+  }
+
+  .header {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .tile {
+    border-radius: 0;
+  }
+
+  .tile::after {
+    opacity: 0;
+  }
+
+  .overlayBottom {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    width: calc(100% - 8px);
+    max-width: 100%;
+    padding-top: 6px;
+    padding-bottom: 22px;
+    gap: 8px;
+  }
+
+  .grid {
+    border-radius: 14px;
+  }
+
+  .pagination {
+    gap: 8px;
+  }
+
+  .pageInfo {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    width: calc(100% - 4px);
+    max-width: 100%;
+    padding-top: 4px;
+    padding-bottom: 18px;
+    gap: 6px;
+  }
+
+  .grid {
+    border-radius: 0;
+  }
+
+  .tile {
+    border-radius: 0;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-inline: 8px;
+  }
+
+  .pageInfo {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+}

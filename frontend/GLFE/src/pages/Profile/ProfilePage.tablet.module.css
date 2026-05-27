@@ -1,0 +1,88 @@
+@media (min-width: 769px) and (max-width: 980px) {
+  .page {
+    padding-inline: 16px;
+  }
+
+  .header {
+    grid-template-columns: 128px minmax(0, 1fr);
+    gap: 18px;
+    padding: 18px 0 24px;
+  }
+
+  .avatarWrap {
+    justify-content: flex-start;
+  }
+
+  .avatar {
+    width: 112px;
+    height: 112px;
+  }
+
+  .meta {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'top'
+      'identity'
+      'stats'
+      'actions'
+      'highlights';
+    row-gap: 14px;
+  }
+
+  .username {
+    font-size: 24px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .actionsBar {
+    width: 100%;
+  }
+
+  .actionGroup {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .actionBtn {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .iconBtn {
+    flex: 0 0 44px;
+  }
+
+  .tabs {
+    gap: 0;
+  }
+
+  .tab {
+    flex: 1 1 0;
+    justify-content: center;
+  }
+
+  .tab span {
+    display: none;
+  }
+
+  .grid {
+    gap: 3px;
+  }
+
+  .detailShell {
+    width: min(calc(100vw - 32px), 920px);
+    height: min(92vh, 900px);
+    grid-template-columns: 1fr;
+  }
+
+  .detailSide {
+    width: auto;
+    border-left: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}

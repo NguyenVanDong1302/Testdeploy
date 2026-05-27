@@ -1,0 +1,66 @@
+@media (max-width: 640px) {
+  .viewerRow {
+    padding: 0;
+    gap: 0;
+  }
+
+  .closeBtn {
+    right: 12px;
+    top: 12px;
+  }
+
+  .storyCard {
+    width: 100vw;
+    min-width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+  }
+
+  .navBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.22);
+  }
+
+  .navBtn:first-of-type {
+    left: 8px;
+  }
+
+  .navBtn:last-of-type {
+    right: 8px;
+  }
+
+  .header {
+    left: 10px;
+    right: 10px;
+    top: 14px;
+  }
+
+  .content {
+    top: 58px;
+    bottom: 72px;
+  }
+
+  .caption {
+    left: 12px;
+    right: 12px;
+    bottom: 14px;
+    font-size: 12px;
+  }
+
+  .footer {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .replyBox {
+    height: 40px;
+  }
+
+  .sideRail {
+    display: none;
+  }
+}

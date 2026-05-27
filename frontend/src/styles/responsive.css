@@ -1,0 +1,134 @@
+.app-layout__main {
+  min-height: 100vh;
+  padding: 0 24px 24px calc(var(--sb-collapsed) + 28px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .home-page__wrapper {
+    gap: 36px;
+  }
+}
+
+@media (max-width: 1024px), (hover: none), (pointer: coarse) {
+  .app-shell {
+    --sb-expanded: var(--sb-collapsed);
+  }
+
+  .app-sidebar,
+  .app-sidebar:hover {
+    width: var(--sb-collapsed);
+  }
+
+  .app-sidebar__nav a,
+  .app-sidebar__nav button,
+  .app-sidebar__bottom button {
+    justify-content: center;
+    gap: 0;
+    padding-inline: 10px;
+  }
+
+  .app-sidebar__logoRow {
+    justify-content: center;
+    padding-inline: 0;
+  }
+
+  .app-sidebar__label,
+  .app-sidebar:hover .app-sidebar__label,
+  .app-sidebar__nav button span:last-child,
+  .app-sidebar__bottom button span:last-child {
+    display: none;
+  }
+
+  .app-sidebar__bottom {
+    left: 8px;
+    right: 8px;
+  }
+
+  .app-layout__main {
+    padding-left: calc(var(--sb-collapsed) + 18px);
+    padding-right: 18px;
+  }
+
+  .home-page__wrapper {
+    gap: 24px;
+    padding-top: 20px;
+  }
+
+  .home-page__center {
+    width: min(100%, 640px);
+  }
+
+  .home-feed__topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-feed__refresh {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-shell {
+    --sb-collapsed: 64px;
+  }
+
+  .app-layout__main {
+    padding-left: calc(var(--sb-collapsed) + 10px);
+    padding-right: 12px;
+  }
+
+  .home-page__wrapper {
+    gap: 16px;
+    padding-top: 14px;
+  }
+
+  .home-page__center {
+    width: 100%;
+  }
+
+  .stories-bar {
+    gap: 12px;
+    padding-bottom: 14px;
+  }
+
+  .stories-bar__item {
+    width: 68px;
+  }
+
+  .stories-bar__name,
+  .stories-bar__helper,
+  .stories-bar__trigger .stories-bar__item > div:last-child {
+    width: 68px;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-layout__main {
+    padding-left: calc(var(--sb-collapsed) + 8px);
+    padding-right: 8px;
+  }
+
+  .home-page__wrapper {
+    padding-top: 12px;
+  }
+
+  .home-feed__subtitle {
+    display: none;
+  }
+
+  .stories-bar {
+    gap: 10px;
+  }
+
+  .stories-bar__item {
+    width: 64px;
+  }
+
+  .stories-bar__name,
+  .stories-bar__helper,
+  .stories-bar__trigger .stories-bar__item > div:last-child {
+    width: 64px;
+  }
+}

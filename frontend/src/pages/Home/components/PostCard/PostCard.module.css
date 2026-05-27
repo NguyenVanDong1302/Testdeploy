@@ -1,0 +1,54 @@
+.card{
+  background:#fff;
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 0 10px 0;
+}
+
+.avatar{
+  width:34px;height:34px;border-radius:999px;object-fit:cover;
+}
+
+.title{ display:flex; align-items:center; gap:6px; font-size:14px; }
+.user{ font-weight:600; }
+.dot{ color:#737373; }
+.time{ color:#737373; }
+
+.more{ margin-left:auto; font-size:22px; line-height:1; padding:0 6px; cursor:pointer; }
+
+.media{
+  border-radius:4px;
+}
+
+.photo{
+  width:100%;
+  border-radius:4px;
+  display:block;
+}
+
+.footer{
+  padding:10px 0 0 0;
+}
+
+.actions{
+  display:flex;
+  gap:14px;
+  font-size:22px;
+  align-items:center;
+}
+
+.icon{ cursor:pointer; }
+.save{ margin-left:auto; cursor:pointer; }
+
+.counts{
+  display:flex;
+  gap:12px;
+  padding-top:8px;
+  color:#000;
+  font-size:14px;
+}
+.mini{ display:flex; gap:6px; align-items:center; }

@@ -1,0 +1,9 @@
+@media (min-width: 993px) and (max-width: 1200px) {
+  .page {
+    padding: 20px 18px 36px;
+  }
+
+  .panel {
+    padding: 20px;
+  }
+}

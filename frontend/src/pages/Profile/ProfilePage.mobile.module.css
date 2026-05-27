@@ -1,0 +1,152 @@
+@media (max-width: 768px) {
+  .page {
+    padding: 12px 12px 24px;
+  }
+
+  .container {
+    max-width: none;
+  }
+
+  .header {
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px 0 20px;
+  }
+
+  .avatarWrap {
+    justify-content: flex-start;
+  }
+
+  .avatar {
+    width: 84px;
+    height: 84px;
+  }
+
+  .meta {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'top'
+      'identity'
+      'stats'
+      'actions'
+      'highlights';
+    row-gap: 14px;
+  }
+
+  .username {
+    font-size: 22px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .actionsBar {
+    width: 100%;
+  }
+
+  .actionGroup {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .ownActionGroup {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .actionBtn {
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .iconBtn {
+    flex: 0 0 44px;
+  }
+
+  .storyHighlights {
+    gap: 12px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .highlightItem {
+    width: 74px;
+    flex: 0 0 auto;
+  }
+
+  .highlightRing {
+    width: 68px;
+    height: 68px;
+  }
+
+  .tabs {
+    gap: 0;
+    margin: 0 -12px;
+  }
+
+  .tab {
+    flex: 1 1 0;
+    justify-content: center;
+    height: 48px;
+  }
+
+  .tab span {
+    display: none;
+  }
+
+  .grid {
+    gap: 2px;
+  }
+
+  .emptyPostState {
+    min-height: 320px;
+    padding: 52px 14px 60px;
+  }
+
+  .footer {
+    display: none;
+  }
+
+  .detailShell {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .detailSide {
+    width: auto;
+    border-left: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}
+
+@media (max-width: 560px) {
+  .topRow {
+    align-items: flex-start;
+  }
+
+  .usernameRow {
+    gap: 8px;
+  }
+
+  .topIconBtn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .tab {
+    height: 46px;
+  }
+
+  .emptyPostState {
+    padding: 44px 12px 54px;
+  }
+}
