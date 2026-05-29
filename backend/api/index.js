@@ -1,7 +1,26 @@
 require("dotenv").config();
 
-if (process.env.VERCEL && !process.env.MEDIA_PUBLIC_BASE_URL && process.env.VERCEL_URL) {
-  process.env.MEDIA_PUBLIC_BASE_URL = `https://${process.env.VERCEL_URL}`;
+function isLoopbackMediaBaseUrl(value = "") {
+  try {
+    const parsed = new URL(String(value || "").trim());
+    const hostname = String(parsed.hostname || "").trim().toLowerCase();
+    return (
+      hostname === "localhost"
+      || hostname === "127.0.0.1"
+      || hostname === "0.0.0.0"
+      || hostname === "::1"
+      || hostname === "[::1]"
+    );
+  } catch (_error) {
+    return false;
+  }
+}
+
+if (process.env.VERCEL && process.env.VERCEL_URL) {
+  const configuredMediaBaseUrl = String(process.env.MEDIA_PUBLIC_BASE_URL || "").trim();
+  if (!configuredMediaBaseUrl || isLoopbackMediaBaseUrl(configuredMediaBaseUrl)) {
+    process.env.MEDIA_PUBLIC_BASE_URL = `https://${process.env.VERCEL_URL}`;
+  }
 }
 
 const mongoose = require("mongoose");

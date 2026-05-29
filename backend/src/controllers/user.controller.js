@@ -13,11 +13,11 @@ const ConversationMember = require("../models/ConversationMember");
 const Message = require("../models/Message");
 const Notification = require("../models/Notification");
 const { AppError } = require("../utils/errors");
+const { normalizePublicMediaUrl } = require("../utils/mediaUrls");
 const notificationService = require('../services/notification.service');
 const { hashPassword } = require("../utils/passwords");
 
 const PROFILE_SELECT = "_id username email bio avatarUrl website fullName gender showThreadsBadge showSuggestedAccountsOnProfile isVerified isPrivateAccount showActivityStatus createdAt";
-const MEDIA_PUBLIC_BASE_URL = (process.env.MEDIA_PUBLIC_BASE_URL || "http://localhost:4000").replace(/\/$/, "");
 const USERNAME_PATTERN = /^[a-z0-9._]{3,30}$/;
 
 function legacyUserId(username) {
@@ -26,17 +26,6 @@ function legacyUserId(username) {
 
 function hasOwn(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj || {}, key);
-}
-
-function normalizePublicMediaUrl(url = "") {
-  const raw = String(url || "").trim().replace(/\\/g, "/");
-  if (!raw) return "";
-  if (/^(https?:)?\/\//i.test(raw)) return raw;
-  if (/^(data:|blob:)/i.test(raw)) return raw;
-  const uploadsIndex = raw.toLowerCase().indexOf("/uploads/");
-  if (uploadsIndex >= 0) return `${MEDIA_PUBLIC_BASE_URL}${raw.slice(uploadsIndex)}`;
-  if (raw.toLowerCase().startsWith("uploads/")) return `${MEDIA_PUBLIC_BASE_URL}/${raw}`;
-  return `${MEDIA_PUBLIC_BASE_URL}${raw.startsWith("/") ? raw : `/${raw}`}`;
 }
 
 function normalizeOptionalBoolean(value, fallback) {
@@ -67,7 +56,7 @@ async function resolveViewer(req) {
   return user;
 }
 
-function serializeUser(user) {
+function serializeUser(user, req) {
   const id = String(user._id);
   return {
     _id: id,
@@ -83,7 +72,7 @@ function serializeUser(user) {
     isPrivateAccount: Boolean(user.isPrivateAccount),
     showActivityStatus: user.showActivityStatus !== false,
     isVerified: Boolean(user.isVerified),
-    avatarUrl: user.avatarUrl || "",
+    avatarUrl: normalizePublicMediaUrl(user.avatarUrl || "", { req }),
     createdAt: user.createdAt || null,
   };
 }
@@ -244,7 +233,7 @@ async function getProfile(req, res, next) {
     return res.json({
       ok: true,
       data: {
-        ...serializeUser(user),
+        ...serializeUser(user, req),
         counts,
         relationship,
       },
@@ -311,7 +300,7 @@ async function follow(req, res, next) {
       ok: true,
       message: "Follow thành công",
       data: {
-        targetUser: serializeUser(targetUser),
+        targetUser: serializeUser(targetUser, req),
         counts,
         relationship: {
           isMe: false,
@@ -392,7 +381,7 @@ async function unfollow(req, res, next) {
       ok: true,
       message: "Bỏ follow thành công",
       data: {
-        targetUser: serializeUser(targetUser),
+        targetUser: serializeUser(targetUser, req),
         counts,
         relationship: {
           isMe: false,
@@ -422,7 +411,7 @@ async function listFollowers(req, res, next) {
 
     return res.json({
       ok: true,
-      data: users.map(serializeUser),
+      data: users.map((item) => serializeUser(item, req)),
     });
   } catch (err) {
     next(err);
@@ -445,7 +434,7 @@ async function listFollowing(req, res, next) {
 
     return res.json({
       ok: true,
-      data: users.map(serializeUser),
+      data: users.map((item) => serializeUser(item, req)),
     });
   } catch (err) {
     next(err);
@@ -461,7 +450,7 @@ async function listUsers(req, res, next) {
 
     return res.json({
       ok: true,
-      data: users.map(serializeUser),
+      data: users.map((item) => serializeUser(item, req)),
     });
   } catch (err) {
     next(err);
@@ -567,7 +556,7 @@ async function updateMyProfile(req, res, next) {
       patch.showActivityStatus = normalizeOptionalBoolean(payload.showActivityStatus, viewer.showActivityStatus !== false);
     }
     if (req.file?.path) {
-      patch.avatarUrl = normalizePublicMediaUrl(`/uploads/avatars/${path.basename(req.file.path)}`);
+      patch.avatarUrl = normalizePublicMediaUrl(`/uploads/avatars/${path.basename(req.file.path)}`, { req });
     } else if (hasOwn(payload, "avatarUrl")) {
       patch.avatarUrl = String(payload.avatarUrl || "").trim();
     }
@@ -586,7 +575,7 @@ async function updateMyProfile(req, res, next) {
       ok: true,
       message: "Cập nhật hồ sơ thành công",
       data: {
-        ...serializeUser(updated),
+        ...serializeUser(updated, req),
         counts,
         relationship: {
           isMe: true,
@@ -699,7 +688,7 @@ async function changeMyUsername(req, res, next) {
       ok: true,
       message: "Äá»•i username thÃ nh cÃ´ng",
       data: {
-        ...serializeUser(updated),
+        ...serializeUser(updated, req),
         counts,
         relationship: {
           isMe: true,

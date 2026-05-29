@@ -18,6 +18,22 @@ function currentOrigin() {
   return trimTrailingSlash(window.location.origin)
 }
 
+function currentHostname() {
+  if (typeof window === 'undefined') return ''
+  return String(window.location.hostname || '').trim().toLowerCase()
+}
+
+function absoluteOriginOf(value: string) {
+  const raw = trimTrailingSlash(String(value || '').trim())
+  if (!raw || raw.startsWith('/')) return ''
+
+  try {
+    return trimTrailingSlash(new URL(raw).origin)
+  } catch {
+    return ''
+  }
+}
+
 function isLoopbackHost(hostname: string) {
   const normalized = String(hostname || '').trim().toLowerCase()
   return normalized === 'localhost'
@@ -27,8 +43,26 @@ function isLoopbackHost(hostname: string) {
     || normalized === '[::1]'
 }
 
+function explicitMediaBaseUrl() {
+  const raw = trimTrailingSlash(String(import.meta.env.VITE_MEDIA_BASE_URL || '').trim())
+  if (!raw) return ''
+
+  try {
+    const parsed = new URL(raw)
+    if (isLoopbackHost(parsed.hostname) && currentHostname() && !isLoopbackHost(currentHostname())) {
+      return ''
+    }
+    return trimTrailingSlash(parsed.origin)
+  } catch {
+    return raw
+  }
+}
+
+const API_ORIGIN = absoluteOriginOf(API_BASE_URL)
+const EXPLICIT_MEDIA_BASE_URL = explicitMediaBaseUrl()
+
 export const MEDIA_BASE_URL = trimTrailingSlash(
-  String(import.meta.env.VITE_MEDIA_BASE_URL || currentOrigin() || `http://localhost:${DEFAULT_BACKEND_PORT}`),
+  String(EXPLICIT_MEDIA_BASE_URL || API_ORIGIN || currentOrigin() || `http://localhost:${DEFAULT_BACKEND_PORT}`),
 )
 
 export type ApiError = Error & { status?: number; data?: any }

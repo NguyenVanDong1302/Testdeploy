@@ -9,6 +9,7 @@ const User = require("../models/User");
 const { getIO } = require("../realtime/socket");
 const { postMediaDir } = require("../config/media");
 const notificationService = require("../services/notification.service");
+const { normalizePublicMediaUrl } = require("../utils/mediaUrls");
 const {
   buildModerationWindow,
   getAutoModerationMaxProcessingMs,
@@ -24,9 +25,6 @@ const {
 const visibilityEnum = ["public", "friends", "private"];
 const PUBLIC_VISIBLE_POST_STATUSES = new Set(["normal", "reported"]);
 const POST_INTERACTION_BLOCKED_STATUSES = new Set(["pending_review", "violating"]);
-const MEDIA_PUBLIC_BASE_URL = (
-  process.env.MEDIA_PUBLIC_BASE_URL || "http://localhost:4000"
-).replace(/\/$/, "");
 
 const createPostSchema = z
   .object({
@@ -185,20 +183,10 @@ function removePostMediaFiles(post) {
   }
 }
 
-function normalizePublicMediaUrl(url = "") {
-  const raw = String(url || "").trim().replace(/\\/g, "/");
-  if (!raw) return "";
-  if (/^https?:\/\//i.test(raw)) return raw;
-  const uploadsIndex = raw.toLowerCase().indexOf("/uploads/");
-  if (uploadsIndex >= 0) return `${MEDIA_PUBLIC_BASE_URL}${raw.slice(uploadsIndex)}`;
-  if (raw.toLowerCase().startsWith("uploads/")) return `${MEDIA_PUBLIC_BASE_URL}/${raw}`;
-  return `${MEDIA_PUBLIC_BASE_URL}${raw.startsWith("/") ? raw : `/${raw}`}`;
-}
-
-function buildMediaFromFiles(files = [], altText = "") {
+function buildMediaFromFiles(req, files = [], altText = "") {
   return files.map((file, index) => ({
     type: file.mimetype.startsWith("video/") ? "video" : "image",
-    url: normalizePublicMediaUrl(`/uploads/posts/${path.basename(file.path)}`),
+    url: normalizePublicMediaUrl(`/uploads/posts/${path.basename(file.path)}`, { req }),
     filename: file.originalname,
     mimeType: file.mimetype,
     size: file.size,
@@ -214,7 +202,7 @@ function detectMediaType(media) {
   return types.has("video") ? "video" : "image";
 }
 
-function serializeComment(comment, currentUserId, postAuthorId, authorAvatarUrl = "") {
+function serializeComment(comment, currentUserId, postAuthorId, authorAvatarUrl = "", req) {
   const obj = comment.toObject ? comment.toObject() : comment;
   const parentCommentId = obj.parentCommentId ? String(obj.parentCommentId) : null;
   const replyToCommentId = obj.replyToCommentId ? String(obj.replyToCommentId) : null;
@@ -230,8 +218,8 @@ function serializeComment(comment, currentUserId, postAuthorId, authorAvatarUrl 
           authorUsername: obj.replyToAuthorUsername,
         }
       : null,
-    authorAvatarUrl,
-    mediaUrl: normalizePublicMediaUrl(obj.mediaUrl || ""),
+    authorAvatarUrl: normalizePublicMediaUrl(authorAvatarUrl, { req }),
+    mediaUrl: normalizePublicMediaUrl(obj.mediaUrl || "", { req }),
     mediaType: obj.mediaType || "",
     likedByMe: Array.isArray(obj.likes) ? obj.likes.includes(currentUserId) : false,
     likesCount: Array.isArray(obj.likes) ? obj.likes.length : 0,
@@ -239,24 +227,24 @@ function serializeComment(comment, currentUserId, postAuthorId, authorAvatarUrl 
   };
 }
 
-function serializePost(post, userId, commentsCount = 0, authorAvatarUrl = "", authorVerified = false) {
+function serializePost(post, userId, commentsCount = 0, authorAvatarUrl = "", authorVerified = false, req) {
   const obj = post.toObject ? post.toObject() : post;
   const likesArr = obj.likes || [];
   const media = (Array.isArray(obj.media) ? obj.media : []).map((item, index) => ({
     ...item,
     type: item.type === "video" || item.mimeType?.startsWith("video/") ? "video" : "image",
-    url: normalizePublicMediaUrl(item.url),
-    thumbnailUrl: item.thumbnailUrl ? normalizePublicMediaUrl(item.thumbnailUrl) : "",
+    url: normalizePublicMediaUrl(item.url, { req }),
+    thumbnailUrl: item.thumbnailUrl ? normalizePublicMediaUrl(item.thumbnailUrl, { req }) : "",
     order: Number.isFinite(item.order) ? item.order : index,
   }));
   const imageUrls = media.filter((item) => item.type === "image").map((item) => item.url);
-  const firstImageUrl = imageUrls[0] || normalizePublicMediaUrl(obj.imageUrl) || "";
+  const firstImageUrl = imageUrls[0] || normalizePublicMediaUrl(obj.imageUrl, { req }) || "";
 
   return {
     ...obj,
     imageUrl: firstImageUrl,
     authorUsername: obj.isAnonymous ? "anonymous" : obj.authorUsername,
-    authorAvatarUrl: obj.isAnonymous ? "" : authorAvatarUrl,
+    authorAvatarUrl: obj.isAnonymous ? "" : normalizePublicMediaUrl(authorAvatarUrl, { req }),
     authorVerified: obj.isAnonymous ? false : Boolean(authorVerified),
     media,
     images: imageUrls,
@@ -375,7 +363,7 @@ async function createPost(req, res, next) {
       });
       ensureCanCreatePost(req.currentUser, todayPosts);
     }
-    const media = buildMediaFromFiles(uploadedFiles, body.altText);
+    const media = buildMediaFromFiles(req, uploadedFiles, body.altText);
 
     if (!body.content && media.length === 0) {
       cleanupUploadedFiles(uploadedFiles);
@@ -423,6 +411,7 @@ async function createPost(req, res, next) {
         0,
         req.currentUser?.avatarUrl || req.user.avatarUrl || "",
         Boolean(req.currentUser?.isVerified),
+        req,
       );
 
       return res.status(201).json({
@@ -452,6 +441,7 @@ async function createPost(req, res, next) {
         0,
         req.currentUser?.avatarUrl || req.user.avatarUrl || "",
         Boolean(req.currentUser?.isVerified),
+        req,
       ),
     });
   } catch (err) {
@@ -611,7 +601,7 @@ async function listPosts(req, res, next) {
     const mapped = items.map((p) => {
       const authorMeta = getAuthorMetaByUsername(authorMetaMap, p.authorUsername);
       const commentsCount = commentsCountByPostId.get(String(p._id)) || 0;
-      return serializePost(p, viewerId, commentsCount, authorMeta.avatarUrl, authorMeta.isVerified);
+      return serializePost(p, viewerId, commentsCount, authorMeta.avatarUrl, authorMeta.isVerified, req);
     });
 
     res.json({
@@ -646,13 +636,14 @@ async function getPost(req, res, next) {
     res.json({
       ok: true,
       data: {
-        post: serializePost(post, req.user?.sub, comments.length, postAuthorMeta.avatarUrl, postAuthorMeta.isVerified),
+        post: serializePost(post, req.user?.sub, comments.length, postAuthorMeta.avatarUrl, postAuthorMeta.isVerified, req),
         comments: comments.map((item) =>
           serializeComment(
             item,
             req.user?.sub,
             post.authorId,
             getAuthorMetaByUsername(authorMetaMap, item.authorUsername).avatarUrl,
+            req,
           ),
         ),
       },
@@ -682,7 +673,7 @@ async function recordView(req, res, next) {
         postId: post._id,
         viewsCount: post.viewsCount,
         lastViewedAt: post.lastViewedAt,
-        post: serializePost(post, req.user?.sub, commentsCount, postAuthorMeta.avatarUrl, postAuthorMeta.isVerified),
+        post: serializePost(post, req.user?.sub, commentsCount, postAuthorMeta.avatarUrl, postAuthorMeta.isVerified, req),
       },
     });
   } catch (err) {
@@ -723,7 +714,7 @@ async function updatePost(req, res, next) {
     const postAuthorMeta = getAuthorMetaByUsername(authorMetaMap, post.authorUsername);
     res.json({
       ok: true,
-      data: serializePost(post, req.user.sub, commentsCount, postAuthorMeta.avatarUrl, postAuthorMeta.isVerified),
+      data: serializePost(post, req.user.sub, commentsCount, postAuthorMeta.avatarUrl, postAuthorMeta.isVerified, req),
     });
   } catch (err) {
     if (err?.name === "ZodError") {
@@ -957,7 +948,7 @@ async function addComment(req, res, next) {
       throw new AppError("Comment must contain text, image, or video", 400, "EMPTY_COMMENT");
     }
     const mediaType = file ? (file.mimetype?.startsWith("video/") ? "video" : file.mimetype === "image/gif" ? "gif" : "image") : "";
-    const mediaUrl = file ? normalizePublicMediaUrl(`/uploads/posts/comments/${path.basename(file.path)}`) : "";
+    const mediaUrl = file ? normalizePublicMediaUrl(`/uploads/posts/comments/${path.basename(file.path)}`, { req }) : "";
 
     const c = await Comment.create({
       postId: post._id,
@@ -997,7 +988,7 @@ async function addComment(req, res, next) {
       console.error("notifyPostComment failed:", error?.message || error);
     });
 
-    res.status(201).json({ ok: true, data: serializeComment(c, req.user.sub, post.authorId, req.user?.avatarUrl || "") });
+    res.status(201).json({ ok: true, data: serializeComment(c, req.user.sub, post.authorId, req.user?.avatarUrl || "", req) });
   } catch (err) {
     cleanupUploadedFiles(req.file ? [req.file] : []);
     if (err?.name === "ZodError") {
@@ -1030,6 +1021,7 @@ async function listComments(req, res, next) {
           req.user?.sub,
           post.authorId,
           getAuthorMetaByUsername(authorMetaMap, item.authorUsername).avatarUrl,
+          req,
         ),
       ),
     });
@@ -1086,6 +1078,7 @@ async function addCommentLike(req, res, next) {
         userId,
         post.authorId,
         getAuthorMetaByUsername(authorMetaMap, comment.authorUsername).avatarUrl,
+        req,
       ),
     });
   } catch (err) {
@@ -1113,6 +1106,7 @@ async function removeCommentLike(req, res, next) {
         userId,
         post.authorId,
         getAuthorMetaByUsername(authorMetaMap, comment.authorUsername).avatarUrl,
+        req,
       ),
     });
   } catch (err) {
